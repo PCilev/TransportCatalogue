@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package serialize;
+
+message RouteWeight {
+    uint32 bus_id = 1;
+    double route_time = 2;
+    uint32 span_count = 3;
+}
+
+message Edge {
+    uint32 stop_from_id = 1;
+    uint32 stop_to_id = 2;
+    RouteWeight weight = 3;
+}
+
+message EdgeId {
+    uint32 edge_id = 1;
+}
+
+message IncidenceList {
+    repeated EdgeId edge_id = 1;
+}
+
+message Graph {
+    repeated Edge edges = 1;
+    repeated IncidenceList incidence_lists = 2;
+}
+
+message RouteInternalData {
+    RouteWeight weight = 1;
+    EdgeId prev_edge = 2;
+}
+
+message OptRouteInternalData {
+    RouteInternalData opt_data = 1;
+}
+
+message RoutesInternalData {
+    repeated OptRouteInternalData data = 1;
+}
+
+message Router {
+    repeated RoutesInternalData routes_internal_data = 1;
+}

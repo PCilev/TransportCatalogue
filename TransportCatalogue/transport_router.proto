@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "graph.proto";
+
+package serialize;
+
+message RoutingSettings {
+    uint32 wait_time = 1;
+    double velocity = 2;
+}
+
+message TransportRouter {
+    RoutingSettings settings = 1;
+    Graph graph = 2;
+    Router router = 3;
+}
